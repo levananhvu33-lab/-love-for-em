@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dành cho em ❤️</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#030305;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{position:relative}
+.bg{position:absolute;inset:-20%;background:
+radial-gradient(circle at 20% 18%,rgba(255,65,65,.12),transparent 25%),
+radial-gradient(circle at 82% 78%,rgba(255,0,70,.10),transparent 28%);
+filter:blur(10px)}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.25}
+.heart{position:absolute;color:#ff8b9b;font-size:20px;opacity:.45;animation:float linear infinite}
+@keyframes float{from{transform:translateY(110vh);opacity:0}12%{opacity:.45}to{transform:translateY(-15vh);opacity:0}}
+.words{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.word{position:absolute;color:rgba(255,255,255,.46);font-size:15px;white-space:nowrap;text-shadow:0 0 10px rgba(255,255,255,.45);animation:drift 10s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(10px,-6px,0)}}
+.center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:28px}
+.card{text-align:center;max-width:390px;width:100%}
+.intro{transition:.5s}
+.kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;opacity:.5;margin-bottom:12px}
+h1{font-size:42px;font-weight:400;margin:0 0 8px;text-shadow:0 0 20px rgba(255,255,255,.25)}
+.sub{font-size:14px;opacity:.55;margin-bottom:22px}
+button{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.06);color:#fff;border-radius:999px;padding:11px 22px;font-size:14px;backdrop-filter:blur(10px)}
+.message{display:none;line-height:1.8;font-size:16px;text-shadow:0 0 12px rgba(255,255,255,.35)}
+.line{opacity:0;transform:translateY(8px);animation:show 1.1s forwards;margin:7px 0}
+.line:nth-child(2){animation-delay:1.4s}
+.line:nth-child(3){animation-delay:2.8s}
+.line:nth-child(4){animation-delay:4.2s}
+.final{font-size:29px;margin-top:18px;color:#ffb0bb;text-shadow:0 0 18px rgba(255,100,130,.55)}
+@keyframes show{to{opacity:1;transform:none}}
+.playing .intro{display:none}
+.playing .message{display:block}
+.foot{position:absolute;bottom:15px;left:0;right:0;text-align:center;font-size:11px;opacity:.3}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="words">
+  <div class="word" style="left:-2%;top:14%">Cảm ơn vì em đã đến</div>
+  <div class="word" style="right:-5%;top:29%">Anh yêu em ♡</div>
+  <div class="word" style="left:3%;top:57%">Chỉ cần được ở bên em</div>
+  <div class="word" style="right:-3%;top:74%">Cảm ơn vì em đã đến</div>
+</div>
+<div id="hearts"></div>
+<div class="center">
+  <div class="card">
+    <div class="intro">
+      <div class="kicker">Dành cho</div>
+      <h1>Em ❤️</h1>
+      <div class="sub">Anh có điều muốn nói...</div>
+      <button id="start">Chạm để mở ❤️</button>
+    </div>
+    <div class="message">
+      <div class="line">Cảm ơn vì em đã đến.</div>
+      <div class="line">Anh thật sự rất vui vì có em.</div>
+      <div class="line">Anh muốn được ở bên em thật lâu.</div>
+      <div class="line final">Làm người yêu anh nhé? ❤️</div>
+    </div>
+  </div>
+</div>
+<div class="foot">Bật âm lượng lên một chút nhé ♫</div>
+<audio id="music" src="loi_to_tinh.mp3" preload="auto"></audio>
+<script>
+const hearts=document.getElementById('hearts');
+for(let i=0;i<14;i++){
+ const h=document.createElement('div'); h.className='heart'; h.textContent=Math.random()>.25?'♥':'♡';
+ h.style.left=Math.random()*100+'%'; h.style.animationDuration=(9+Math.random()*8)+'s';
+ h.style.animationDelay=(-Math.random()*14)+'s'; hearts.appendChild(h);
+}
+for(let i=0;i<35;i++){
+ const s=document.createElement('div'); s.className='star'; s.style.left=Math.random()*100+'%'; s.style.top=Math.random()*100+'%'; document.body.appendChild(s);
+}
+document.getElementById('start').addEventListener('click',async()=>{
+ try{await document.getElementById('music').play()}catch(e){}
+ document.body.classList.add('playing');
+});
+</script>
+</body>
+</html>
